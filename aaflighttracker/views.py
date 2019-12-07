@@ -40,12 +40,3 @@ def flightviewer(request):
             'message': "Fill the form to search for a flight"
         }
         return render(request, 'aaflighttracker/index.html', args)
-    
-#    flightform = searchform()
-    
-#    htmltemplate = 'index.html'
-    
-#    context = {
-#        'form': flightform,
-#    }
-#    return render(request, htmltemplate, context)
