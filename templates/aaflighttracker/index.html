@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,32 +8,39 @@
 
 <form method="POST">
 {% csrf_token %}
-<table border=1>
+<table style="border: solid 1px #cccccc">
 {{ form.as_table }}
 </table>
 <button type="Submit">Submit</button>
 </form>
+<br/>
 
 <p>{% if fullurl %}<strong>API URL:</strong> <a href="{{ fullurl }}" target="_blank">{{ fullurl }}</a>{% endif %}</p>
-<p>{% if message %}<strong>Status:</strong> {{ message }}{% endif %}</p>
+<p>{% if message %}<strong>Status:</strong> {{ recordcount }} {{ message }}{% endif %}</p>
 
 {% for flights in jsondata %}
-<table width="40%" border=1>
+<table width="40%" style="border: 1px solid #cccccc">
     <tr>
-        <td style="background-color: skyblue">
-            Flight {{ flights.flightNumber }}
+        <td>
+            <strong>Flight {{ flights.flightNumber }}</strong><br/>
+            <img src="{{ MEDIA_URL }}aaflighttracker/aalogo.png" width="120px">
         </td>
         <td>
-            <table width="100%" border=1>
+            <table width="100%">
                 <tr>
-                    <td>
+                    <td style="color: #ffffff; background-color: #0e70ad">
                         Depart: {{ flights.origin.city }} ({{ flights.origin.code }})<br/>
                         Arrive: {{ flights.destination.city }} ({{ flights.destination.code }})<br/>
                         {{ flights.distance }} miles in {{ flights.duration.locale }}
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="background-color: #ffffff">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color: #ffffff; background-color: #901c1c">
                         Aircraft Model: {{ flights.aircraft.model }} ({{ flights.aircraft.speed}} mph)<br/>
                         First Class: {{ flights.aircraft.passengerCapacity.first }} | Main Cabin: {{ flights.aircraft.passengerCapacity.main }}<br/>
                         Total Capacity: {{ flights.aircraft.passengerCapacity.total }}

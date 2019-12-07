@@ -22,6 +22,7 @@ def flightviewer(request):
             args = {
                 'form': flightform,
                 'jsondata': jsondata,
+                'recordcount': len(jsondata),
                 'fullurl': fullurl,
                 'message': "Available Flights Shown Below"
             }
