@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>American Airlines Flight Tracker</title>
+</head>
+<body>
+
+<form method="POST">
+{% csrf_token %}
+<table border=1>
+{{ form.as_table }}
+</table>
+<button type="Submit">Submit</button>
+</form>
+
+<p>{% if fullurl %}<strong>API URL:</strong> <a href="{{ fullurl }}" target="_blank">{{ fullurl }}</a>{% endif %}</p>
+<p>{% if message %}<strong>Status:</strong> {{ message }}{% endif %}</p>
+
+{% for flights in jsondata %}
+<table width="40%" border=1>
+    <tr>
+        <td style="background-color: skyblue">
+            Flight {{ flights.flightNumber }}
+        </td>
+        <td>
+            <table width="100%" border=1>
+                <tr>
+                    <td>
+                        Depart: {{ flights.origin.city }} ({{ flights.origin.code }})<br/>
+                        Arrive: {{ flights.destination.city }} ({{ flights.destination.code }})<br/>
+                        {{ flights.distance }} miles in {{ flights.duration.locale }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Aircraft Model: {{ flights.aircraft.model }} ({{ flights.aircraft.speed}} mph)<br/>
+                        First Class: {{ flights.aircraft.passengerCapacity.first }} | Main Cabin: {{ flights.aircraft.passengerCapacity.main }}<br/>
+                        Total Capacity: {{ flights.aircraft.passengerCapacity.total }}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<p>
+{% endfor %}
+
+</body>
+</html>
