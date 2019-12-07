@@ -40,4 +40,4 @@ def flightviewer(request):
             'form': flightform,
             'message': "Fill the form to search for a flight"
         }
-        return render(request, 'aaflighttracker/index.html', args)
+        return render(request, htmltemplate, args)
