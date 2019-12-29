@@ -14,7 +14,7 @@ lazy-object-proxy==1.4.3
 mccabe==0.6.1
 pathspec==0.5.9
 pylint==2.4.4
-pypiwin32==223
+# pypiwin32==223
 python-dateutil==2.8.0
 # pywin32==227
 PyYAML==3.13
